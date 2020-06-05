@@ -10,6 +10,7 @@ class MzituSpider(CrawlSpider):
     start_urls = ['https://www.mzitu.com']
 
     rules = (
+        Rule(LinkExtractor(allow=r'page/[1,2,3]',restrict_xpaths='//div[@class="pagination"]//a')),
         Rule(LinkExtractor(allow=r'.+com/\d{6}',restrict_xpaths='//div[@class="postlist"]//li//a'),follow=True,callback='parse_images'),
         Rule(LinkExtractor(allow=r'.+com/\d{6}/\d',restrict_xpaths='//div[@class="pagenavi"]/a'),follow=True,callback='parse_images'),   
     )
